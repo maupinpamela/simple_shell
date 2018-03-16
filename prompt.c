@@ -22,14 +22,11 @@ int main(__attribute__((unused)) int ac, char **av)
 	{
 		_putchar('$');
 		_putchar(' ');
-		printf("First");
-
 		while (getline (&buffer, &buffersize, stdin) != -1)
 		{
 			write(1, buffer, space);
 			_putchar('$');
 			_putchar(' ');
-			printf("second");
 			words++;
 		}
 		while (getline (&buffer, &buffersize, stdin) == -1)
