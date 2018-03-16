@@ -3,7 +3,7 @@
 int main(__attribute__((unused)) int ac, char **av)
 {
 	int words = 0;
-	size_t buffersize = 32;
+	size_t buffersize = 32, space = 0;
 	char *buffer;
 
 
@@ -16,13 +16,17 @@ int main(__attribute__((unused)) int ac, char **av)
 
 	while (av[words] != NULL)
 	{
-		printf("$ ");
+		_putchar('$');
+		_putchar(' ');
+
 		while (getline (&buffer, &buffersize, stdin) != -1)
 		{
-			printf("%s", buffer);
+			write(1, buffer, space);
 			words++;
-			printf("$ ");
+			_putchar('$');
+			_putchar(' ');
 		}
+
 	}
 	free(buffer);
 	return (0);
