@@ -3,30 +3,40 @@
 int main(__attribute__((unused)) int ac, char **av)
 {
 	int words = 0;
-	size_t buffersize = 32, space = 0;
+	size_t buffersize = 1024, space = 0;
 	char *buffer;
-
 
 	buffer = (char *)malloc(buffersize * sizeof(char));
 	if (buffer == NULL)
 	{
-		perror("Error try again");
-		exit(1);
+		return (0);
 	}
-
+	if (av[words] == '\0')
+	{
+		perror("ERROR TRY AGAIN");
+		words = 0;
+		exit(98);
+		_putchar('\n');
+	}
 	while (av[words] != NULL)
 	{
 		_putchar('$');
 		_putchar(' ');
+		printf("First");
 
 		while (getline (&buffer, &buffersize, stdin) != -1)
 		{
 			write(1, buffer, space);
-			words++;
 			_putchar('$');
 			_putchar(' ');
+			printf("second");
+			words++;
 		}
-
+		while (getline (&buffer, &buffersize, stdin) == -1)
+		{
+			perror("TRY AGAIN no data");
+			printf ("98");
+		}
 	}
 	free(buffer);
 	return (0);
