@@ -68,26 +68,31 @@ char *_strcpy(char *dest, char *src)
 
 
 /**
- * _strcmp - compares two strings
+ * _strcmp - compare two strings
+ *
  * @s1: first string
  * @s2: second string
  *
- * Return: the difference of s1 and s2
+ * Return: compared strings
  */
 
 int _strcmp(char *s1, char *s2)
 {
-	int s1d;
-	int s2d;
+	int i = 0;
 
-	do {
-		s1d = *s1++;
-		s2d = *s2++;
-		if (s1d == '\0')
-			return (s1d - s2d);
-	} while (s1d == s2d);
-	return (s1d - s2d);
+	while (s1[i] == s2[i])
+	{
+		if (s1[i] == '\0' && s2[i] == '\0')
+			break;
+
+		i++;
+
+	}
+	return (s1[i] - s2[i]);
+
+
 }
+
 
 /**
  * _strcat - concatenates two strings neither of which has been malloc'd
