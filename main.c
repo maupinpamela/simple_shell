@@ -1,34 +1,28 @@
 #include "testheader.h"
-
-int main(int argc, char *argv[])
+void testprompt(char **arguments)
 {
-	char *cmd;
-	char line[max_length];
-	char *v = line;
-	size_t c = max_length;
+	char /*cmd,*/ *dollar = "$ ";
+
+
+	write (STDOUT_FILENO, dollar, 2);
+	getspid(arguments);
+	/*arguments = parse_cmdword(cmd);*/
+	/*pos = execute_args(arguments, place)*/
+	/*free(cmd);*/
+	/*free(arguments);*/
+
+
+}
+
+
+int main(int argc, char **argv)
+{
+
+	char *arguments[] = {"/bin/ls", NULL};
 	(void)argc;
 	(void)argv;
 
-	while (1)
-	{
-		printf("$ ");
-		if (getline (&v, &c, stdin) == -1)
-			break;
 
-		if ((cmd = strtok(line, delims)))
-		{
-
-
-			if (strcmp(cmd, "exit") == 0)
-			{
-				break;
-			}
-			else
-			{
-				system(line);
-			}
-		}
-	}
-
-	return 0;
+	testprompt(arguments);
+	return (0);
 }
