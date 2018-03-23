@@ -8,14 +8,14 @@ int forks(char **args)
 	getp = fork();
 	if (getp == 0)
 	{
-		printf("%s\n", args[0]);
 		execve(args[0], args, NULL);
 
 		if (getp < 0)
 			perror ("no child");
-
-		else
-			wait(&status);
+	}
+	else
+	{
+		wait(&status);
 	}
 	return (1);
 }
