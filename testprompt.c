@@ -1,22 +1,32 @@
 #include "testheader.h"
-void promptline()
+
+char *promptline(void)
 {
-	static int promline = 1;
 	char *buffer;
-	size_t buffersize = 1024;
-	int space = 0;
+	size_t buffersize = max_length;
+	int length = 0, getcmd;
 
 	buffer = malloc(sizeof(char) * buffersize);
-	if (buffer == 0)
-		printf ("CLEAR FAIL");
-
-	if (promline)
+	if (buffer == NULL)
 	{
-		_putchar('$');
-		_putchar(' ');
-		write(1, &buffer, space);
-		/*promline = 0;*/
+		perror ("CLEAR FAIL");
+		/*exit(EXIT_FAILURE);*/
+	}
+	while (1)
+	{
+		getcmd = getline(&buffer, &buffersize, stdin);
+		if (getcmd == EOF || getcmd == '\n')
+			exit(EXIT_SUCCESS);
+		else
+			if (getcmd == -1)
+			{
+				free(buffer);
+				exit(EXIT_FAILURE);
+			}
+		length = _strlen(buffer);
+		buffer[length + 1] = '\0';
 	}
 	free(buffer);
+	return (buffer);
 
 }
