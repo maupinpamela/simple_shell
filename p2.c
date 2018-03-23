@@ -3,12 +3,16 @@
 void beginning(void)
 {
 	char *cmd;
-	int status;
 	char **args;
+	char *dollas = "$ ";
 
 	while (1)
 	{
-		printf("$ ");
+		if (isatty(STDIN_FILENO))
+		{
+			write(STDOUT_FILENO, dollas, 2);
+		}
+
 		cmd = takeline();
 		args = parseline(cmd);
 		forks(args);
@@ -17,5 +21,4 @@ void beginning(void)
 		free(cmd);
 		free(args);
 	}
-	while (status);
 }
