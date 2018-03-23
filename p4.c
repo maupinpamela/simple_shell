@@ -1,22 +1,23 @@
 #include "p.h"
 char **parseline(char *line)
 {
-	int buffersize = max_length;
-	int pos = 0, i = 0;
-	char **copy = NULL;
 	char *token;
 	char *delims = " \n";
+	char **copy = NULL;
+	int i = 0;
+	int buffersize = max_length;
 
 	copy = malloc(sizeof(char*) * buffersize);
 
-	if (token == NULL)
-		perror ("Can't allocate");
 	token = strtok(line, delims);
 
 	if (token == NULL)
 		return (0);
 	copy[i] = token;
 	i++;
+
+	if (token == NULL)
+		perror ("Can't allocate");
 
 	while (token != NULL)
 	{
