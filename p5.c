@@ -6,6 +6,7 @@ int forks(char **args)
 	int status;
 
 	getp = fork();
+
 	if (getp == 0)
 	{
 		execve(args[0], args, NULL);
@@ -13,9 +14,11 @@ int forks(char **args)
 		if (getp < 0)
 			perror ("no child");
 	}
+
+
 	else
 	{
-		wait(&status);
+		getp = wait(&status);
 	}
-	return (1);
+	return (0);
 }
