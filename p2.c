@@ -1,6 +1,6 @@
 #include "p.h"
 
-void beginning(void)
+int main(void)
 {
 	char *cmd;
 	char **args;
@@ -16,9 +16,9 @@ void beginning(void)
 		cmd = takeline();
 		args = parseline(cmd);
 		forks(args);
-		/*status = exline(args);*/
 
 		free(cmd);
 		free(args);
 	}
+	return (0);
 }
