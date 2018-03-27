@@ -1,5 +1,9 @@
 #include "p.h"
-
+/**
+ *print_path- sets the PATH variable and prints the path
+ * @cmd: the command that was entered in the input line
+ * Return: a concatinated string
+ */
 char **print_path(char *cmd)
 {
 	char *token = NULL, *path = NULL, *ret = 0, *hold = NULL;
@@ -31,7 +35,7 @@ char **print_path(char *cmd)
 		newstr[j] = ret;
 		ret = strtok(NULL, delim);
 	}
-	free (path);
+	free(path);
 	newstr = '\0';
 	return (newstr);
 }
