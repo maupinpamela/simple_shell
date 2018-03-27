@@ -15,6 +15,7 @@ int main(void)
 
 		cmd = takeline();
 		args = parseline(cmd);
+		print_path(cmd);
 		forks(args);
 
 		free(cmd);
