@@ -9,6 +9,7 @@ int forks(char **args)
 	pid_t getp;
 	int status;
 	char *ret;
+	path_t *mainglo = make_path();
 
 	getp = fork();/*creates the fork*/
 
@@ -21,6 +22,7 @@ int forks(char **args)
 			ret = check_path(mainglo, args[0]);
 			if (ret == NULL)
 				perror("Doesn't Exist");
+
 			if (execve(ret, args, environ) < 0)
 				perror("Didn't Run");
 		}
@@ -29,11 +31,9 @@ int forks(char **args)
 			perror("no child");
 	}
 
-
 	else
 	{
 		getp = wait(&status);/*or it just waits*/
 	}
-
 	return (0);
 }

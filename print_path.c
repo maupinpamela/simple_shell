@@ -1,7 +1,6 @@
 #include "p.h"
 /**
- *print_path- sets the PATH variable and prints the path
- * @cmd: the command that was entered in the input line
+ *make_path- sets the PATH variable and prints the path
  * Return: a concatinated string
  */
 path_t *make_path(void)
@@ -12,7 +11,7 @@ path_t *make_path(void)
 	path = _strdup(_getenv("PATH"));
 	if (path == NULL)
 		return (NULL);
-	token = strtok(path , ":");
+	token = strtok(path, ":");
 	if (token == NULL)
 		return (NULL);
 
@@ -29,20 +28,23 @@ path_t *make_path(void)
 		token = strtok(NULL, ":");
 		if (token != NULL)
 		{
-			temp->next = (malloc(sizeof(path_t)));/*malloc only if we have another token*/
+			/*malloc only we have another token*/
+			temp->next = (malloc(sizeof(path_t)));
 			temp = temp->next;/*move to the next node*/
 		}
 		else
 			temp->next = NULL;
-		
 	}
-	free (path);
+	free(path);
 	return (head);
-
 }
 
-
-
+/**
+ *check_path- concatinates the strtok from above
+ * @head: start of the linked list
+ * @cmd: the command that was passed in
+ * Return: return the executed command
+ */
 char *check_path(path_t *head, char *cmd)
 {
 	/*concats*/
@@ -55,11 +57,11 @@ char *check_path(path_t *head, char *cmd)
 	{
 		copy = _strcat(temp->s, "/");
 		copy = _strcat(copy, cmd);
-		
+
 		if (stat(copy, &st) == 0)
 			return (copy);
-		else
-			free(copy);
+
+		free(copy);
 		temp = temp->next;
 	}
 	return (NULL);
