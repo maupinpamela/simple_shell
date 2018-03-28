@@ -4,14 +4,14 @@
  * Return: returns an int
  */
 
-
 int main(void)
 {
 	char *cmd;
 	char **args;
 	char *dollas = "$ ";
-	
-	mainglo = make_path();
+	/*path_t *mainglo;*/
+
+	/*mainglo = make_path();*/
 	while (1)
 	{
 		if (isatty(STDIN_FILENO) == 1)
@@ -31,8 +31,8 @@ int main(void)
 		if (args != NULL)
 		{
 			forks(args);
-			free (args);
-			free (cmd);
+			free(args);
+			free(cmd);
 		}
 
 
