@@ -8,12 +8,22 @@ int forks(char **args)
 {
 	pid_t getp;
 	int status;
+	char *ret;
 
 	getp = fork();/*creates the fork*/
 
 	if (getp == 0)
 	{
-		execve(args[0], args, NULL);/*executes the command*/
+		if (args[0][0] == '/')
+			execve(args[0], args, environ);/*executes the command*/
+		else
+		{
+			ret = check_path(mainglo, args[0]);
+			if (ret == NULL)
+				perror("Doesn't Exist");
+			if (execve(ret, args, environ) < 0)
+				perror("Didn't Run");
+		}
 
 		if (getp < 0)
 			perror("no child");
@@ -24,5 +34,6 @@ int forks(char **args)
 	{
 		getp = wait(&status);/*or it just waits*/
 	}
+
 	return (0);
 }
