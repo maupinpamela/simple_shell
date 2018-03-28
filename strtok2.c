@@ -12,6 +12,9 @@ char **parseline(char *line)
 	int i = 0;
 	int buffersize = max_length;
 
+	if (line == NULL)
+		return (NULL);
+
 	copy = malloc(sizeof(char *) * buffersize);/*make space*/
 	if (copy == NULL)
 		return (NULL);
@@ -32,6 +35,7 @@ char **parseline(char *line)
 	{
 		token = strtok(NULL, delims);/*moves onto the next command if any*/
 		copy[i] = token;
+		free(token);
 		i++;
 	}
 	return (copy);
@@ -46,11 +50,18 @@ char **parseline(char *line)
 char *look_line(char *token)
 {
 
-	if (_strcmp(token, "exit") == 0)/*string compares to see if its exit*/
-		exit(1);
+	if (token == NULL)
+		return (NULL);
 
-	if (_strcmp(token, "env") == 0)/*string compares to see if its env*/
+	else if (_strcmp(token, "exit") == 0)/*string compares to see if its exit*/
+	{
+		fflush(stdin);
+		_exit(0);
+	}
+
+	else if (_strcmp(token, "env") == 0)/*string compares to see if its env*/
 		print_env();/*runs print env func*/
 
 	return (token);
 }
+
