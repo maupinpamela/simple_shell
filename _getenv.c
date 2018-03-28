@@ -1,11 +1,8 @@
 #include "p.h"
 /**
- *
- *
- *
+ *_getenv- writes the env
+ * Return: the name without the =
  */
-
-
 
 char *_getenv(char *name)
 {
@@ -43,4 +40,3 @@ char *_getenv(char *name)
 	res = strtok(NULL, "=");
 	return (res);
 }
-
