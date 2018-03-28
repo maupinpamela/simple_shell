@@ -1,3 +1,6 @@
+#ifndef P_H
+#define P_H
+
 #include <sys/wait.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -5,21 +8,27 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-/*Defined Macros*/
-#define max_length 1024;
-/*#define delims " \t\r\n\a"*/
 
+/*Defined Macros*/
+#define max_length 1024
+
+/**
+ * struct path - singly linked list
+ * @s: string - (malloc'ed string)
+ * @next: points to the next node
+ *
+ * Description: singly linked list node structure
+ */
 
 typedef struct path
 {
 	char *s;
 	struct path *next;
-}path_t;
+} path_t;
 
 
-path_t *mainglo;
+/*path_t *mainglo;*/
 extern char **environ;
-struct stat st;
 
 /*Main Functions*/
 void beginning(void);
@@ -44,3 +53,5 @@ char *look_line(char *token);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *str_concat(char *s1, char *s2);
 void free_list(path_t *head);
+
+#endif
