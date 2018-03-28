@@ -7,7 +7,9 @@ char *takeline(void)
 {
 	size_t buffersize = 0;
 	char *line;
-	int check = 0;
+	int check;
+
+
 
 	check = getline(&line, &buffersize, stdin);/*gets input from command line*/
 
@@ -17,11 +19,11 @@ char *takeline(void)
 		free(line);
 		exit(EXIT_SUCCESS);
 	}
-
-	if (line == NULL)/*if line is empty it will return NULL*/
+	
+	if (line == 0)/*if line is empty it will return NULL*/
 	{
 		return (NULL);
 	}
-
 	return (line);
+	
 }
