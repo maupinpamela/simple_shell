@@ -9,7 +9,7 @@ int main(void)
 	char *cmd;
 	char **args;
 	char *dollas = "$ ";
-	/*path_t *mainglo;*/
+
 
 	/*mainglo = make_path();*/
 	while (1)
