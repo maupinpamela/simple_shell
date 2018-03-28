@@ -1,6 +1,7 @@
 #include "p.h"
 /**
  *_getenv- writes the env
+ * @name: the name of the command passed in
  * Return: the name without the =
  */
 
