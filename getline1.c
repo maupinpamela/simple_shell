@@ -19,11 +19,9 @@ char *takeline(void)
 		free(line);
 		exit(EXIT_SUCCESS);
 	}
-	
 	if (line == 0)/*if line is empty it will return NULL*/
 	{
 		return (NULL);
 	}
 	return (line);
-	
 }
