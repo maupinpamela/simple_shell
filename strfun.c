@@ -1,4 +1,4 @@
-#include "testheader.h"
+#include "p.h"
 /**
  * _strdup - returns a pointer to a duplicated
  * string
