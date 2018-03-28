@@ -15,7 +15,7 @@ char *takeline(void)
 
 	if (check == EOF)/*checks to see if the input is EOF*/
 	{
-		_putchar('\n');
+		/*_putchar('\n');*/
 		free(line);
 		exit(EXIT_SUCCESS);
 	}
