@@ -9,16 +9,12 @@ int main(void)
 	char *cmd;
 	char **args;
 	char *dollas = "$ ";
+	int counter = 0;
 
-
-	/*mainglo = make_path();*/
 	while (1)
 	{
 		if (isatty(STDIN_FILENO) == 1)
-		{
 			write(STDOUT_FILENO, dollas, 2);
-
-		}
 
 		cmd = takeline();
 		if (cmd == NULL)
@@ -31,13 +27,20 @@ int main(void)
 		if (args != NULL)
 		{
 			forks(args);
-			free(args);
-			free(cmd);
 		}
-
-
+		if (cmd)
+			free(cmd);
+		if (args)
+		{
+			while (args[counter])
+			{
+				if (args[counter])
+					free(args[counter]);
+				counter++;
+			}
+			free(args);
+		}
 	}
-
 	return (0);
 }
 
