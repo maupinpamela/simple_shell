@@ -53,5 +53,5 @@ char *look_line(char *token);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *str_concat(char *s1, char *s2);
 void free_list(path_t *head);
-
+char *str_concat(char *s1, char *s2);
 #endif
