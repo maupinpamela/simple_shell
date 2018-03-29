@@ -30,14 +30,21 @@ char *_getenv(char *name)
 			if (name[j] != environ[i][j])
 				break;
 			if (name[j + 1] == '\0' && environ[i][j + 1] == '=')
+			{
 				match = _strdup(environ[i]);
+				break;
+			}
 			j++;
 		}
 		if (match)
+		{
+			free(name);
 			break;
+		}
 		i++;
 	}
 	strtok(match, "=");
-	res = strtok(NULL, "=");
+	res = _strdup(strtok(NULL, "="));
+	free(match);
 	return (res);
 }
