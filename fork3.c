@@ -21,19 +21,28 @@ int forks(char **args)
 		{
 			ret = check_path(mainglo, args[0]);
 			if (ret == NULL)
+			{
+				free_list(mainglo);
 				perror("Doesn't Exist");
-
+			}
 			if (execve(ret, args, environ) < 0)
+			{
+				free_list(mainglo);
 				perror("Didn't Run");
+			}
 		}
 
 		if (getp < 0)
+		{
+			free_list(mainglo);
 			perror("no child");
+		}
 	}
 
 	else
 	{
 		getp = wait(&status);/*or it just waits*/
 	}
+	free_list(mainglo);
 	return (0);
 }
