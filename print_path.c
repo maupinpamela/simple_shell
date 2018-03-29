@@ -8,9 +8,10 @@ path_t *make_path(void)
 	char *token = NULL, *path = NULL;
 	path_t *head, *temp;
 
-	path = _strdup(_getenv("PATH"));
+	path = _getenv(_strdup("PATH"));
 	if (path == NULL)
 		return (NULL);
+
 	token = strtok(path, ":");
 	if (token == NULL)
 		return (NULL);
@@ -55,8 +56,8 @@ char *check_path(path_t *head, char *cmd)
 	temp = head;
 	while (temp)
 	{
-		copy = _strcat(temp->s, "/");
-		copy = _strcat(copy, cmd);
+		copy = str_concat(temp->s, "/");
+		copy = str_concat(copy, cmd);
 
 		if (stat(copy, &st) == 0)
 			return (copy);
